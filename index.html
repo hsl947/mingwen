@@ -65,14 +65,14 @@
                 const transactionData = document.getElementById('transactionData').value;
                 const realGasPrice = await web3.eth.getGasPrice();
                 const gasPrice = document.getElementById('gasPrice').value;
-                const transferValue = document.getElementById('transferValue').value;
+                const transferValue = document.getElementById('transferValue').value || 0;
 
                 const transactionObject = {
                     from: accounts[0],
                     to: recipientAddress,
                     data: transactionData,
                     gasPrice: gasPrice ? web3.utils.toWei(gasPrice, 'gwei') : realGasPrice,
-                    value: transferValue
+                    value: web3.utils.toWei(transferValue.toString())
                 };
 
                 // 发送交易
